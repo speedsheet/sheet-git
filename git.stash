@@ -1,0 +1,1392 @@
+# The <#>Git<> SpeedSheet
+<b>What you need, faster.<>
+
+
+
+	<b>Don't Browse.
+
+					<#>Search!<><>
+
+
+# Summary
+
+Official Documentation:
+<l>https://git-scm.com/docs<>
+
+
+
+## Purpose
+
+Git is a distributed version control repository (by design).
+Everything is stored locally.
+
+Git is all about snapshots.
+Git stores snapshots of the entire project file structure.
+
+Changes are stored and retrieved by hash code (SHA-1) in the Git database.
+Git uses the hash codes at the lowest level to verify data integrity.
+
+
+
+## Environment Variable
+
+<cb>HOME<>
+
+Locates the global Git repository and globla Git settings.
+
+Tip:
+<c>HOME<> is used by many programs. Override it for git by creating a script or batch file to launch git and change the value of <c>Home<> there.
+
+
+
+## Steps
+
+
+### Committing to local
+
+Place in staging.
+Add commit message.
+Commit.
+
+
+
+### Committing to main repository
+
+Push
+
+
+
+### Reversing a local commit
+
+Reset - Hard
+
+Note:
+This will reverse all local changes an restore to last pull from remote repository.
+
+
+
+## Recommended Standards
+
+
+### Naming - Feature Branches
+
+<cb>feature-<v>####<>-<v>summary-description<><>
+
+
+Use lower hyphen case (lips case).
+
+
+
+### Commit Message Format
+
+<cb>"[<v>module name<>] <v>commit message<>."<>
+
+
+The commit message should complete sentence "Commit will <v>...<>".
+
+
+Example:
+
+<cb>"[Payments] retrieve payment type from the payment system."<>
+
+
+
+# Git Configuration Files
+
+
+
+## Config File - Global
+
+<cb><v>home_directory<>/.gitconfig<>
+
+
+
+## Config File - Local
+
+<cb>.git/config<>
+
+
+
+## Config - Precedence
+
+Local settings supercede Global settings.
+
+
+
+# Git Components
+
+
+
+## Main Components
+
+	Repository
+	Branches
+	Commits
+	Objects
+
+
+
+## File Components
+
+	Configuration File
+	Hooks
+	Object Database
+	References
+	Index
+
+
+The reference contains the branches.
+The branch points to the commit.
+The commit points to the tree.
+The tree points to the contents / blob.
+
+
+
+# Commands
+
+
+
+### Help - Get
+
+<cb>git help <v>verb<><>
+
+<cb>git <v>verb<> --help<>
+
+
+
+### Branch - Checkout
+
+<cb>git checkout <v>branch_name<><>
+
+Create A New Branch:
+
+<cb>git checkout -b <v>branch_name<><>
+
+
+Switches the files to a new branch.
+<c>-b<> will create a new branch using the existing files.
+
+Note:
+Checkout will fail if the current branch is 'dirty' (has changed files).
+
+
+
+### Branch - Checkout Remote Branch
+
+<cb>git fetch
+git checkout <v>branch_name<><>
+
+
+
+### Branch - Checkout - By Tag
+
+<cb>git checkout tags/<v>tag_name<><>
+
+
+
+### Branch - Checkout - Force
+
+<cb>git reset <v>branch_name<><>
+
+
+See: Branch - Reset - Hard
+
+
+
+### Branch - Clean
+
+<cb>git clean -fd<>
+
+
+Removes empty directories, uncommitted new files.
+
+
+
+### Branch - Clean - Pre-Check	
+
+<cb>git clean -fdn<>
+
+
+Shows what files will be deleted.
+
+
+
+### Branch - Commit
+
+<cb>git commit<>
+
+<cb>git commit -m "<v>Commit Message<>"<>
+
+
+
+### Branch - Compare Against Branch
+
+Compare To Current Branch:
+
+<cb>git diff <v>branch_name<><>
+
+Compare Two Branches:
+
+<cb>git diff <v>branch1<>...<v>branch2<><>
+
+
+	<c>--stat<>			Produces stats for the difference.
+	<c>--fileFilter<>		Filter by file. eg '-- *.java'.
+
+
+If branch names do not work, use commit ids.<>
+
+
+
+### Branch - Create New Brancrh
+
+<cb>git checkout -b <v>branch_name<><>
+
+
+
+### Branch - Create Remote
+
+See: "Branch - Push To Remote"
+
+
+
+### Branch - Delete
+
+<cb>git branch -d <v>branch_name<><>
+
+
+Note: branch is deleted from view.
+Note: Safe: will not delete if the branch is not reachable from another branch.
+
+
+
+### Branch - Delete (Force)
+
+<cb>git branch -D <v>branch_name<><>
+
+
+Force deletes a branch. No safety check. The data stays in the database though.
+
+
+
+### Branch - Delete (Remote)
+
+<cb>git push --delete <v>remote_repository_name<> <v>branch_name<><>
+
+Old Syntax:
+
+<cb>git push <v>remote_repository_name<> :<v>branch_name<><>
+
+
+Note: Deletes a branch on the origin.
+
+
+
+### Branch - Delete Last Commit
+
+2 Steps:
+
+1: Delete Local Repository Commit:
+
+<cb>git reset --hard <v>commit_name<><>
+
+2: Force Push Delete To Central Repository:
+
+<cb>git push origin +master<>
+
+
+
+### Branch - Files - List Tracked by Git
+
+<cb>git ls-files<>
+
+
+
+### Branch - Info
+
+See: Commit - Info
+
+Branch Name:
+
+<cb>git status | grep On | sed -e 's/On branch //g'<>
+
+Commit Hash:
+
+<cb>git log | head -n 1 | sed -e 's/commit //g'<>
+
+
+
+### Branch - Merge
+
+<cb>git merge <v>branch_name<><>
+
+
+Merges <v>branch_name<> into the current checked out branch.
+
+
+
+### Branch - Merge - Fix With Tool
+
+<cb>git mergetool<>
+
+
+Opens the merge tool configured in the git .gitconfig file.
+Each file is passed successively.
+
+
+
+### Branch - Merge - Show Merged Branches
+
+<cb>git branch --merged<>
+
+
+Shows all merged branches in this branch.
+Useful for listing what features are included in branch, esp main branch.
+
+
+
+### Branch - Merge - Show Non-Merged Branches
+
+<cb>git branch --no-merged<>
+
+
+Useful for listing what features haven't beer merged into the branch.
+
+
+
+### Branch - Pull
+
+<cb>git pull <v>branch_name<><>
+
+
+
+### Branch - Push to Remote
+
+<cb>git push <v>remote_repository<> <v>new_branch_name<><>
+
+
+
+### Branch - Rebase
+
+<cb>git rebase <v>target_branch<><>
+
+
+Rebases the current branch off <v>target_branch<>.
+
+
+
+### Branch - Rebase - Cancel
+
+<cb>git rebase -abort<>
+
+
+
+### Branch - Rebase - Continue
+
+<cb>git rebase --continue<>
+
+
+
+### Branch - Rebase - Full
+
+<cb>git checkout master
+git pull
+git checkout feature-branch
+git rebase master<>
+
+Merge conflict:									<#># Only if merge conflicts.<>
+
+<cb>git mergetool
+git rebase --continue<>
+
+Reset
+
+<cb>git rebase --abort<>
+
+Complete
+
+<cb>git push -f<>
+
+
+
+### Branch - Rename
+
+The only way is to delete the old branch and then re-create with the new name:
+
+3 Steps:
+
+
+1: Create Branch With Correct Name:
+
+<cb>git branch -m [ <v>old_branch<> ] <v>new_branch<><>
+
+2: Delete Original Branch:
+
+<cb>git push --delete <v>remote_repository<> <v>old_branch_name<><>
+
+3: Push New Branch To Remote
+
+<cb>git push <v>remote_repository<> <v>new_branch<><>
+
+
+
+### Branch - Retrieve
+
+See "Repository - Retrieve" (Below)
+
+
+
+### Branch - Reset - Hard
+
+<cb>git reset --hard<>
+
+
+Note: Deletes all changes.
+Note: Reverts to the last proper commit (before changes or merge).
+
+
+
+### Branch - Reset - Hard (II)
+
+<cb>git reset --hard <v>commit_name<><>
+
+Note: Just like normal hard reset but reverts to a particular commit point.
+
+
+
+### Branch - Update - From
+
+See: Branch - Merge
+
+
+
+### Branches - List All
+
+<cb>git branch<>
+
+
+Note: Lists active branch in a different colour.
+
+	-a 	// List all local and remote branches
+	-r	// List all remote branches.
+
+
+
+### Branches - List All with same hash
+
+<cb>git branch --contains <v>hash_code<><>
+
+
+Lists all the branches in your local repository with that hash code.
+@
+@ hashcode, hash code
+
+
+
+### Branches - Tracking
+<!>Remove? What is this for?<>
+
+See: Branch - Merge - Merged Branches
+See: Branch - Merge - Not Merged Branches
+
+
+
+### Code - Stash / Save
+
+<cb>git stash<>
+
+
+
+
+### Code - Retrieve
+
+<cb>git stash pop<>
+
+
+
+### Commit - Delete (already pushed)
+
+<cb>git reset --hard <v>commit_to_reset_to<>
+git push origin HEAD --force<>
+
+
+Example - Erase last pushed commit:  <!>NOT TESTED!<>
+
+<cb>git reset --hard <v>HEAD~1<>
+git push origin HEAD --force<>
+
+
+
+### Commit - Ignore - Files
+
+Create file .gitignore
+
+
+See: Reference - .gitignore
+
+
+
+### Commit - Ignore - File Chmod
+
+<cb>git config core.fileMode false<>
+
+
+
+### Commit - Info
+
+Branch Name:
+
+<cb>git status | grep On | sed -e 's/On branch //g'<>
+
+Commit Hash:
+
+<cb>git log -1 --format="%H"<>
+
+Commit Hash (Alternative):
+
+<cb>git log -1 | head -n 1 | sed -e 's/commit //g'<>
+
+Commit Hash Short:
+
+<cb>git log --pretty=format:'%h' -n 1<>
+
+Commit Date:
+
+<cb>git show -s --format="%ci"<>
+
+
+
+### Commit - Message - Change
+
+<cb>git --amend<>
+
+
+
+### Commit - Squash
+
+<cb>git rebase -i HEAD~<v>number_of_commits_back<><>
+
+In Editor Mark:
+
+	1st Commit - 'pick'
+	All Other Commits - 's'
+
+	Ignore comment.
+
+In Next Editor:
+
+	Edit commit message.
+	Delete all other uncommented lines.
+
+<#>\# Comments are ignored.<>
+
+
+
+### Commits - Diff - Summary	
+
+<cb>git log --numstat --pretty="%H" old_commit..new_commit | awk 'NF==3 {plus+=$1; minus+=$2} END {printf("+%d, -%d\n", plus, minus)}'<>
+@
+@ show
+
+
+
+### Commits - Diff - Summary - By File	
+
+<cb>git diff --stat <v>old_commit<>..<v>new_commit<><>
+@
+@ show
+
+
+
+### Commits - View All	
+
+<cb>git log<>
+
+
+<!>Show Example Output<>
+@ TODO, INCOMPLETE, show, list
+
+
+
+
+### Commits - View All, Formatted
+
+<cb>git log --pretty=format:"%h : %an : %ar : %s"<>
+
+	%an	User Name
+	%ar	Update Date/Time
+	%h	Hash Code - Short
+	%s	Comment (1st line only)
+
+
+":" is not important. It is there to help formatting.
+
+
+<!>Show Example Output<>
+@ TODO, INCOMPLETE, show, list
+
+
+
+### Commits - View All, Short
+
+<cb>git log --pretty=oneline<>
+
+
+<!>Show Example Output<>
+@ TODO, INCOMPLETE, show, list
+
+
+
+
+### Commits - View All, Short, Formatted
+
+<cb>git log --graph --decorate --pretty=oneline --abbrev-commit<>
+
+
+<!>Show Example Output<>
+@ TODO, INCOMPLETE, show, list
+
+
+
+### Config
+
+See: Settings
+
+
+
+### Directory - Untrack
+
+<cb>git rm --cached -r <!>(? what here? File name? Not directory name?)<> <v>file_name<><>
+
+
+
+### Directories - Remove Empty
+
+<cb>git clean -fd<>
+
+
+See Also: Branch - Clean
+
+
+
+### File - Add, Stage
+
+<cb>git add <v>file_name<><>
+
+<cb>git add *<>
+
+
+Adds all files to the repository (staging).
+Note: After this, the files can be deleted and they will still be in the repository.
+
+
+
+### File - Add, Silence Warnings
+
+<cb>git config advice.addIgnoredFile false<>
+
+
+Silences warnings about files that are ignored by .ignore
+@
+@ .ignore config advice.addignoredfile, ignored files
+
+
+
+### File - Changes - View
+
+<cb>git diff <v>file_name<><>
+
+
+
+### File - Revert to Head
+
+<cb>git checkout <v>file_name<><>
+
+<cb>git checkout <v>branch_name<> <v>file_name<><>
+
+
+
+### File - Remove From Repo
+
+Remove and Delete File:
+
+<cb>git rm <v>file_name<><>
+
+Remove But Do Not Delete File:
+
+<cb>git rm --cached <v>file_name<><>
+
+
+
+### File - Rename
+
+<cb>git mv <v>file_name<> new<v>file_name<><>
+
+
+
+### File - Status
+
+<cb>git status -s<>
+
+Note: Displays the status of files that have changed.
+
+
+
+### File - Untrack
+
+<cb>git rm --cached <v>file_name<><>
+
+
+
+### Rebase - Abort
+
+<cb>git rebase --abort<>
+
+
+
+### Rebase - Continue
+
+<cb>git rebase --continue<>
+
+
+
+### Repository - Add files
+
+<cb>git add <v>file_name<><>
+
+<cb>git add <v>*.extension<><>
+
+
+
+### Repository - Clone
+
+<cb>git clone git://<v>repository_url<> [ <v>target_directory<> ]<>
+
+<cb>git clone https://<v>user_id<>:<v>password<>@<v>repository_url<> [ <v>target_directory<> ]<>
+
+
+
+### Repository - Commit
+
+<cb>git commit -m "<v>commit message<>"<>
+
+Commit Adding Changed Tracked Files:
+
+<cb>git commit -a -m "<v>commit message<>"<>
+
+- adds all tracked files that have changed.
+- Untracked files will not be added.
+- commits changes.
+
+
+
+### Repository - Create
+
+See: Repository - Init
+
+See: Repository - Clone
+
+
+
+### Repository - Fetch - Current, Tracked
+
+<cb>git fetch<>
+
+
+Updates local repository with the latest changes from 
+
+
+
+### Repository - Fetch - All
+
+<cb>git fetch -all<>
+
+
+
+### Repository - Create
+
+
+<cb>git init<>
+
+
+Creates a new git repository.
+Initializes in the current directory.
+Initializes in the GIT_DIR if the environment variable is set.
+@
+@ New, Initialize
+
+
+### Repository - List All
+
+<cb>git remote<>
+
+
+
+### Repository - New
+
+See: Repository - Init
+
+
+
+### Repository - Remote - Push
+
+<cb>git push -u repo_name --all<>
+
+<cb>git push -u repo_name --tags<>
+
+
+
+### Repository - Remote - Set Url
+
+<cb>git remote set-url <v>repo_name<> <v>url<><>
+
+Use to update from different url. Example when repo gets renamed.
+
+
+Example:
+
+<cb>git remote set-url origin https://<v>user_name<>@<v>github.com/account/repo_name<><>
+
+
+
+### Repository - Remote - Rename
+
+<cb>git remote rename <v>old_name<> <v>new_name<><>
+
+
+Renames the local name for the repository.
+
+
+
+### Repository - Retrieve
+
+Fetch
+
+<cb>git fetch<>
+
+Fetch, Removing Remote Deleted Branches:
+
+<cb>git fetch --prune<>
+
+Fetches the latest remote changes into the local copy of the remote.
+
+
+
+### Repository - Status
+
+<cb>git status<>
+
+Displays the status of all files.
+
+
+
+### Repository - Update From Origin
+
+See: Repository - Fetch
+
+
+
+### Setting - Remove
+
+<cb>git config --unset <v>setting_name<><>
+
+
+
+### Settings - Access Token - Create
+
+From github account:
+
+Link:
+
+<cb><l>https://github.com/settings/tokens<><>
+
+Or
+
+<cb>Profile						<#>(Top Right)<>
+Settings					<#>(Menu, Bottom)<>
+Developer Settings			<#>(Left Nav)<>
+Personal access tokens		<#>(Left Nav)<>
+
+Generate new token			<#>(Button)<><>
+@
+@ key, code, passcode, code, pat, personal
+
+
+
+### Settings - Access Token - Use
+
+Use as password.
+
+Example:
+
+<cb>git clone https://<v>user_name<>:<v>access_token<>@github.com/speedsheet/git<>
+@
+@ key, code, passcode, code, pat, personal
+
+
+
+### Settings - Credentials - Use Local Credentials Only
+
+<cb>git config --local credential.helper ""<>
+
+Use local credentials over global ones.
+
+<m>(Mac only?)<>
+@
+@ password, passcode, access codes
+
+
+
+### Settings - Editor - Set
+
+<v>git config --global core.editor "<v>text_editor_command<>"<>
+
+
+
+### Settings - Ignore - File Permissions
+
+<cb>git config core.fileMode false<>
+
+
+
+### Settings - Password - Check Cache
+
+Mac Only:
+
+<cb>git credential-osxkeychain<>
+
+If installed, reports "Usage: git credential-osxkeychain <get|store|erase>"
+
+
+
+### Settings - Password - Reset / Clear
+
+Mac Only:
+
+<cb>git config --global credential.helper osxkeychain<>
+
+
+
+### Settings - Password - Set Password Cache
+
+<cb>git config --global credential.helper cache<>
+
+Mac Only:
+
+<cb>git config --global credential.helper osxkeychain<>
+
+
+
+### Settings - Set Email
+
+Local Setting:
+
+<cb>git config user.email <v>email@address.com<><>
+
+Global Setting:
+
+<cb>git config --global user.email <v>email@address.com<><>
+@
+@ create account
+
+
+
+### Settings - Set Name
+
+Local Setting:
+
+<cb>git config user.name "Name"<>
+
+Global Setting:
+
+<cb>git config --global user.name "Name"<>
+@
+@ create account
+
+
+
+### Settings - Set Merge Tool
+
+<cb>git mergetool -t <v>merge_tool_name<><>
+
+
+Example:
+
+Mac / KDiff3
+
+<cb>git config --global mergetool.kdiff3.path /Applications/kdiff3.app/Contents/MacOS/kdiff3<>
+
+
+
+### Settings - Show/View
+
+git config --list
+	git config --list [ --global | --local | --system ]
+
+		--global						// List global settings only
+		--local	// List local settings only
+
+	- Option -	--global	// Sets option for every project. Leave it out for a temporary override in current project.
+
+
+
+### Tag - Checkout
+
+<v>git checkout <v>tag_name<><>
+
+
+
+### Tag - Create
+
+Create Lightweight Tag:
+
+<cb>git tag <v>tag_name<><>
+
+Tag a Commit:
+
+<cb>git tag <v>tag_name<> <v>commit_id<><>
+
+Annotate Tag:
+
+<cb>git tag -a <v>tag_name<> -m "<v>commit message<>"<>
+
+
+
+### Tag - Delete
+
+<cb>git tag -d <v>tag_name<><>
+
+
+
+### Tag - View
+
+<cb>git show <v>tag_name<><>
+
+
+
+### Tag - View - Closest
+
+git describe --abbrev=0
+
+
+
+### Tag - View - Current
+
+<c>git describe --tags<>
+
+
+
+### Tags - List
+
+<c>git tag<>
+
+<cb>git tag -l <v>pattern<><>
+
+
+
+# Reference - Config Settings
+
+
+
+### Setting - credential.helper
+
+<cb>credential.helper<>
+
+Location / cache to store user credentials.
+
+
+
+### Setting - push.default
+
+<cb>push.default<>
+
+Sets Push mode (simple | matching). Prefer simple.
+
+
+
+### Setting - user.email
+
+<cb>user.email<>
+
+Sets commit user email
+
+
+
+### Setting - user.name
+
+<cb>user.name<>
+
+Sets commit user name
+@
+@ user id, username
+
+
+
+# Reference - .gitignore
+@
+@ Git Ignore, GitIgnore
+
+
+
+### Sample .gitignore file
+
+<c># Sample File
+<#># This is a comment<>
+
+ignore_this_file.txt
+*.txt
+folder/<l>
+
+
+
+# Glossary
+
+
+## Acronyms
+
+
+
+### PAT
+Personal Access Token
+
+
+
+### SC
+Secure Copy
+
+
+### SCM
+Software Configuration Masagement
+
+
+
+### SCP
+Secure Copy Protocol
+
+
+
+### SHA
+Secure Hash Algorythm
+
+
+
+## Terms
+@
+@ Definition, Defien
+
+
+
+### Branch
+A pointer to a commit.
+
+
+
+### Commit
+A commit is a snapshot of the project.
+
+Commits contain these fields: Tree (pointer to the tree); Parent (pointer to the previous commit); Author; Comment.
+
+
+
+### Commit (Action)
+Committing files, takes files that have been marked as staged and commits a snapshot to the local repository.
+
+
+
+### Content
+Git stores content by first creating a name and then compressing the data.
+
+The name is the SHA1 digest hash for the data. The data is stored in the .git/objects directory. The first two letters of the name/hash are the subdirectory and the remainder is the file name. The content has built in security features. The SHA1 hash will detect any flaws in the content. Git checks the contents against the hash at almost every point. Content is immutable.
+
+
+
+### Fast Forward (Merge)
+This is the simplest type of merge. Effectively, the current branch's pointer is updated to point to the same commit as the branch being merged in.
+
+The current branch must be a direct ancestor of the updated branch. There must be no conflicts (no updates in the current branch). If this is all true, then git updates the current branch pointer, moving it to the commit point of the branch being merged in.
+
+
+
+### Fetch
+Updates a local branch with the contents of a remote branch.
+
+See also: Pull
+
+
+
+### File Status
+Modified, Staged, Committed.
+
+
+
+### File Status - Committed
+The file and it's changes have been committed to the repository.
+
+
+
+### File Status - Modified
+The file has been changed but not committed.
+
+
+
+### File Status - Staged
+The file has been changed, and marked by the user to go into the next snapshot.
+
+
+
+### Git Directory
+The main repository.
+
+It is distributed but each repository location has a copy of the entire repository including the local repository.
+
+
+
+### Git URL
+Almost always uses an unauthenticated URL.
+
+Typically only read only but git is a special case. It can write too. Uses SSH and works like SCP (file transfer only).
+Format: git://
+
+
+
+### Git Workflow
+
+1. Checkout Project
+2. Modify Files
+3. Stage Changed Files
+4. Commit Changes
+
+
+
+### Git Workflow - Gitflow
+
+Branches:
+
+	Feature
+	Development
+	Master
+	Release
+	Hotfix
+
+Atlassian Writeup:
+<l>https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow<>
+
+
+
+### Git Workflow - Trunk
+
+All development is done on one branch, typically called trunk.
+
+Features can be developed on separate branches but must be committed ofter to the trunk (multiple times a day).
+Features should be very small, will be deployed when the trunk is released but are controlled using feature flags.
+
+Branches:
+
+	Truck
+	Feature
+
+
+
+### Head
+The last commit in the currently checked out branch.
+
+
+
+### Merge
+Merge merges code from one branch into another.
+
+Merges are done FROM the target branch INTO current branch.
+
+
+
+### Objects
+Raw data stored as gzip files. Can be one of the commit metadata, the directory listing, the file contents.
+
+
+
+### Object Database
+Is equivalent to an NSDictionary or a Hash Table / Key-Value Store. The values are the content (blob).
+
+
+
+### Origin
+'<c>origin<>' is a reference to the original source repository.
+
+Use '<c>origin<>' wherever you would user the full url to the original remote repository.
+
+
+
+### Personal Access Token (PAT)
+A code generated by your account on Github that is used instead of your password when accessing / updating repos.
+
+
+
+### Pull
+Pull is a git Fetch, followed by a merge. There is no oppertunity to compare before the merge.
+
+
+
+### Pushing
+Types: Simple, Matching
+
+
+
+### Rebase
+Sequentially regenerate a series of commits so they can be applied directly off a particular branch.
+
+Before:
+<c>	        c4 (feature-1)
+	       /
+	c1 \<- c2 -\< c3 (master)<>
+
+
+<cb>git rebase master<>
+
+
+After:
+<c>	              c4 (feature-1)
+	             /
+	c1 \<- c2 -\< c3 (master)<>
+
+
+
+### Repository Concepts
+Git Directory (repository), Staging Area, Working Directory.
+
+
+
+### SHA1 Digest
+This is a standard hashing function.
+
+Hashing functions generates an almost unique number for a piece of data based on it's contents. The number is fixed length and is independent of the data length. The chance of two different pieces of data having the same SHA1 Digest value is incredibly slim.
+
+The hash value is sometimes called the message digest.
+
+
+
+### Staging Area
+Contains the files to be added to the next commit.
+
+The user selects documents to be added to the commit by first adding them to the staging area.
+The user can then verify what is staged and not staged before making the actual commit.
+
+Internally it is a sort of index file that contains information about the Git directory and what will go into th next commit.
+
+
+
+### Tracked Files
+Files that Git tracks changes and commits on.
+
+
+
+### Untracked Files
+Files ignored by Git.
+
+Files must be deliberately added to the repository. Git will not add new files just because they weren't there before. 
+
+
+
+### Working Directory
+The project directory with one version of the project checked out.
+
+
