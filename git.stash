@@ -1085,12 +1085,16 @@ git describe --abbrev=0
 
 
 # Reference - Config Settings
+@
+@ get, show
 
 
 
 ### Setting - credential.helper
 
 <cb>credential.helper<>
+
+<cb>git config --get credential.helper<>
 
 Location / cache to store user credentials.
 
@@ -1100,13 +1104,25 @@ Location / cache to store user credentials.
 
 <cb>push.default<>
 
+<cb>git config --get push.default<>
+
 Sets Push mode (simple | matching). Prefer simple.
+
+
+
+### Settings - remote.origin.url
+
+<cb>remote.origin.url<>
+
+<cb>git config --get remote.origin.url<>
 
 
 
 ### Setting - user.email
 
 <cb>user.email<>
+
+<cb>git config --get user.email<>
 
 Sets commit user email
 
@@ -1115,6 +1131,8 @@ Sets commit user email
 ### Setting - user.name
 
 <cb>user.name<>
+
+<cb>git config --get user.name<>
 
 Sets commit user name
 @
