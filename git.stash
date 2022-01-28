@@ -1,31 +1,26 @@
 # The <#>Git<> SpeedSheet
 <b>Find what you need, faster.<>
 
+## Summarized
 
-
-	<b>Don't Browse.
-
-					<#>Search!<><>
+<table><col>Repository - Create		<><col><c>git init<><>
+<col>Repository - Clone<><col><c>git clone <v>url<><><>
+<col> <>
+<col>Branch - Create<><col><c>git branch -b <v>branch_name<><><>
+<col>Branch - Checkout<><col><c>git checkout <v>branch_name<><><>
+<col>Branch - Commit<><col><c>git commit -m <v>message<><><>
+<col>Branch - Delete<><col><c>git branch -d <v>branch_name<><><>
+<col> <>
+<col>Environment Variable<><col><c>HOME<><><>
 
 
 # Summary
 
-Official Documentation:
+Official Documents:
 <l>https://git-scm.com/docs<>
 
-
-
-## Purpose
-
-Git is a distributed version control repository (by design).
-Everything is stored locally.
-
-Git is all about snapshots.
-Git stores snapshots of the entire project file structure.
-
-Changes are stored and retrieved by hash code (SHA-1) in the Git database.
-Git uses the hash codes at the lowest level to verify data integrity.
-
+Commands:
+<l>https://git-scm.com/docs/git#_git_commands<>
 
 
 ## Environment Variable
@@ -38,7 +33,6 @@ Tip:
 <c>HOME<> is used by many programs. Override it for git by creating a script or batch file to launch git and change the value of <c>Home<> there.
 
 
-
 ## Steps
 
 
@@ -49,11 +43,9 @@ Add commit message.
 Commit.
 
 
-
 ### Committing to main repository
 
 Push
-
 
 
 ### Reversing a local commit
@@ -91,54 +83,92 @@ Example:
 
 
 
-# Git Configuration Files
-
-
-
-## Config File - Global
-
-<cb><v>home_directory<>/.gitconfig<>
-
-
-
-## Config File - Local
-
-<cb>.git/config<>
-
-
-
-## Config - Precedence
-
-Local settings supercede Global settings.
-
-
-
 # Git Components
 
 
 
 ## Main Components
 
-	Repository
-	Branches
-	Commits
-	Objects
-
+<card>Repository
+Branches
+Commits
+Objects<>
 
 
 ## File Components
 
-	Configuration File
-	Hooks
-	Object Database
-	References
-	Index
-
+<card>Configuration File
+Hooks
+Object Database
+References
+Index<>
 
 The reference contains the branches.
 The branch points to the commit.
 The commit points to the tree.
 The tree points to the contents / blob.
+
+
+
+# Help Command
+
+<cb>git help <v>verb<><>
+
+<cb>git <v>verb<> --help<>
+@
+@ git help, --help
+
+
+
+# Repository Commands
+
+
+### Repository - Create
+
+<cb>git init<>
+
+Creates a new git repository.
+Initializes in the current directory.
+Initializes in the GIT_DIR if the environment variable is set.
+@
+@ git init
+@ new, initialize
+
+
+### Repository - Clone
+
+<cb>git clone git://<v>repository_url<> [ <v>target_directory<> ]<>
+
+
+Clones a remote repository into the current directory.
+@
+@ git clone
+@ remote
+
+
+### Repository - Clone With User Id, Password
+
+<cb>git clone https://<v>user_id<>:<v>password<>@<v>repository_url<> [ <v>target_directory<> ]<>
+
+
+Clones a remote repository using a user id and password..
+@
+@ git clone
+@ remote, name
+
+
+### Repository - Clone With Access Token
+
+<cb>git clone https://<v>user_id<>:<v>access_token<>@<v>repository_url<> [ <v>target_directory<> ]<>
+
+
+Clones a remote repository into the current directory and links the two with an access token.
+
+Use access token in place of a password.
+@
+@ git clone
+@ remote
+
 
 
 
@@ -738,6 +768,17 @@ Note: Displays the status of files that have changed.
 
 
 
+### Git - Version
+
+<cb>git version<>
+
+
+Displays git version information.
+@
+@ git version, --version
+
+
+
 ### Rebase - Abort
 
 <cb>git rebase --abort<>
@@ -758,14 +799,6 @@ Note: Displays the status of files that have changed.
 
 
 
-### Repository - Clone
-
-<cb>git clone git://<v>repository_url<> [ <v>target_directory<> ]<>
-
-<cb>git clone https://<v>user_id<>:<v>password<>@<v>repository_url<> [ <v>target_directory<> ]<>
-
-
-
 ### Repository - Commit
 
 <cb>git commit -m "<v>commit message<>"<>
@@ -777,14 +810,6 @@ Commit Adding Changed Tracked Files:
 - adds all tracked files that have changed.
 - Untracked files will not be added.
 - commits changes.
-
-
-
-### Repository - Create
-
-See: Repository - Init
-
-See: Repository - Clone
 
 
 
@@ -803,28 +828,9 @@ Updates local repository with the latest changes from
 
 
 
-### Repository - Create
-
-
-<cb>git init<>
-
-
-Creates a new git repository.
-Initializes in the current directory.
-Initializes in the GIT_DIR if the environment variable is set.
-@
-@ New, Initialize
-
-
 ### Repository - List All
 
 <cb>git remote<>
-
-
-
-### Repository - New
-
-See: Repository - Init
 
 
 
@@ -908,18 +914,6 @@ Developer Settings			<#>(Left Nav)<>
 Personal access tokens		<#>(Left Nav)<>
 
 Generate new token			<#>(Button)<><>
-@
-@ key, code, passcode, code, pat, personal
-
-
-
-### Settings - Access Token - Use
-
-Use as password.
-
-Example:
-
-<cb>git clone https://<v>user_name<>:<v>access_token<>@github.com/speedsheet/git<>
 @
 @ key, code, passcode, code, pat, personal
 
@@ -1142,7 +1136,7 @@ Sets commit user name
 
 # Reference - .gitignore
 @
-@ Git Ignore, GitIgnore
+@ Git Ignore, GitIgnore, exclude files
 
 
 
@@ -1154,6 +1148,24 @@ Sets commit user name
 ignore_this_file.txt
 *.txt
 folder/<l>
+
+
+# Reference - Git Configuration Files
+
+
+### Config File - Global
+
+<cb><v>home_directory<>/.gitconfig<>
+
+
+### Config File - Local
+
+<cb>.git/config<>
+
+
+### Configuration - Precedence
+
+Local settings supercede Global settings.
 
 
 
@@ -1280,13 +1292,14 @@ Format: git://
 
 Branches:
 
-	Feature
-	Development
-	Master
-	Release
-	Hotfix
+<card>Feature
+Development
+Master
+Release
+Hotfix<>
 
 Atlassian Writeup:
+
 <l>https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow<>
 
 
@@ -1300,8 +1313,8 @@ Features should be very small, will be deployed when the trunk is released but a
 
 Branches:
 
-	Truck
-	Feature
+<card>Truck
+Feature<>
 
 
 
