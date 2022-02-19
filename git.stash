@@ -872,7 +872,7 @@ Equivalent Command:
 Removes all files from the staging area.
 @
 @ git reset
-@ delete from, modified, changed
+@ delete from, modified, changed, clear
 
 
 
@@ -1299,6 +1299,28 @@ Sets commit user name
 # Reference - .gitignore
 @
 @ Git Ignore, GitIgnore, exclude files
+
+
+
+### .gitignore - Ignore Directory
+
+In .gitignore:
+
+<cb><v>directory<><>
+
+
+Ignores the matching file.
+
+
+
+### .gitignore - Ignore File
+
+In .gitignore:
+
+<cb><v>file_name<><>
+
+
+Ignores the matching file.
 
 
 
