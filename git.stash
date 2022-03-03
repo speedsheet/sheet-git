@@ -13,6 +13,7 @@
 <col>File - Add<><col><c>git add <v>file_name<><><>
 <col>File - Add All<><col><c>git add *<><>
 <col>File - Remove<><col><c>git rm <v>file_name<><><>
+<col>File - Remove All<><col><c>git add -u<><>
 <col>Files - Commit<><col><c>git commit -m <v>message<><><>
 <col> <>
 <col>Environment Variable<><col><c>HOME<><><>
@@ -225,6 +226,28 @@ Clones a remote repository into the current directory.
 
 
 
+### Remote Repository - Clone To Directory
+
+<cb>git clone git://<v>repository_url<> <v>target_directory<>
+
+
+Clones a remote repository into the target directory.
+@
+@ git clone
+
+
+
+### Remote Repository - Clone Checking Out Branch
+
+<cb>git clone git://<v>repository_url<> -b <v>branch_name<>
+
+
+Clones a remote repository and checks out the named branch.
+@
+@ git clone, -b
+
+
+
 ### Remote Repository - Clone With User Id, Password
 
 <cb>git clone https://<v>user_id<>:<v>password<>@<v>repository_url<> [ <v>target_directory<> ]<>
@@ -306,7 +329,7 @@ Renames the local name for the repository.
 
 Usage:
 
-<cb>git remote set-url <v>name<> <v>new_url<>
+<cb>git remote set-url <v>name<> <v>new_url<><>
 
 <cb>git remote set-url <v>name<> https://<v>user<>:<v>password<>@<v>new_url<><>
 @
@@ -822,6 +845,8 @@ In Next Editor:
 
 
 # Staging Area
+@
+@ commit
 
 
 ### Staging Area - Add File
@@ -850,7 +875,23 @@ Will not add special files (eg. any file starting with '.'). These must be added
 
 
 
-### Staging Area - Remove File
+### Staging Area - Add Deleted File
+
+<cb>git rm <v>file_name<><>
+@
+@ rm
+
+
+
+### Staging Area - Add All Deleted Files
+
+<cb>git add -u<>
+@
+@ -u
+
+
+
+### Staging Area - Remove From Staging
 
 <cb>git restore --staged <v>file_name<><>
 
@@ -864,7 +905,7 @@ Equivalent Command:
 
 
 
-### Staging Area - Remove All Files / Reset
+### Staging Area - Remove All From Staging / Reset
 
 <cb>git reset<>
 
