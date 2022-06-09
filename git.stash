@@ -10,6 +10,9 @@
 <col>Branch - Checkout<><col><c>git checkout <v>branch_name<><><>
 <col>Branch - Delete<><col><c>git branch -d <v>branch_name<><><>
 <col> <>
+<col>File - Diff To Branch<><col><c>git diff <v>file_name<><><>
+<col>Files - All Diffs To Branch<><col><c>git diff<><>
+<col> <>
 <col>File - Add<><col><c>git add <v>file_name<><><>
 <col>File - Add All<><col><c>git add *<><>
 <col>File - Remove<><col><c>git rm <v>file_name<><><>
@@ -17,6 +20,7 @@
 <col>Files - Commit<><col><c>git commit -m <v>message<><><>
 <col> <>
 <col>Environment Variable<><col><c>HOME<><><>
+
 
 
 # Online Resources
@@ -681,6 +685,17 @@ Clears files in the commit but keeps your work.
 
 
 
+### Commit - Checkout
+
+<cb>git checkout <v>commit-hash<><>
+
+Checks out the commit with the given hash.
+@
+@ git checkout
+@ get, retrieve, hash, with, using
+
+
+
 ### Commit - Commit All Changed Files
 
 <cb>git commit -a -m "<v>commit message<>"<>
@@ -696,7 +711,7 @@ Staged files are committed too.
 
 
 
-### Commit ############################
+### Commit ############# Update Line ###############
 
 
 
@@ -755,6 +770,8 @@ Commit Date:
 ### Commit - Message - Change
 
 <cb>git --amend<>
+@
+@ git --amend
 
 
 
@@ -775,6 +792,8 @@ In Next Editor:
 	Delete all other uncommented lines.
 
 <#>\# Comments are ignored.<>
+@
+@ git rebase -i
 
 
 
@@ -782,6 +801,7 @@ In Next Editor:
 
 <cb>git log --numstat --pretty="%H" old_commit..new_commit | awk 'NF==3 {plus+=$1; minus+=$2} END {printf("+%d, -%d\n", plus, minus)}'<>
 @
+@ git log --numstat --pretty
 @ show
 
 
@@ -790,6 +810,7 @@ In Next Editor:
 
 <cb>git diff --stat <v>old_commit<>..<v>new_commit<><>
 @
+@ git diff --stat
 @ show
 
 
@@ -800,7 +821,10 @@ In Next Editor:
 
 
 <!>Show Example Output<>
-@ TODO, INCOMPLETE, show, list
+@
+@ git log
+@ TODO, INCOMPLETE
+@ show, list, history, past
 
 
 
@@ -819,7 +843,10 @@ In Next Editor:
 
 
 <!>Show Example Output<>
-@ TODO, INCOMPLETE, show, list
+@
+@ git log --pretty
+@ TODO, INCOMPLETE
+@ show, list, history, past
 
 
 
@@ -829,8 +856,10 @@ In Next Editor:
 
 
 <!>Show Example Output<>
-@ TODO, INCOMPLETE, show, list
-
+@
+@ git log --pretty
+@ TODO, INCOMPLETE
+@ show, list, history, past
 
 
 
@@ -840,7 +869,10 @@ In Next Editor:
 
 
 <!>Show Example Output<>
-@ TODO, INCOMPLETE, show, list
+@
+@ git log
+@ TODO, INCOMPLETE
+@ show, list, history, past
 
 
 
@@ -1088,6 +1120,18 @@ Silences warnings about files that are ignored by .ignore
 ### File - Changes - View
 
 <cb>git diff <v>file_name<><>
+@
+@ git diff
+
+
+
+### File - Changes - View All
+
+<cb>git diff<>
+
+View all changes in all files.
+@
+@ git diff
 
 
 
