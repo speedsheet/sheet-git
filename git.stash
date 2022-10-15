@@ -1121,7 +1121,8 @@ Silences warnings about files that are ignored by .ignore
 
 <cb>git diff <v>file_name<><>
 @
-@ git diff
+@ git diff, differences, compare
+@ show, print
 
 
 
@@ -1131,7 +1132,8 @@ Silences warnings about files that are ignored by .ignore
 
 View all changes in all files.
 @
-@ git diff
+@ git diff, differences, compare
+@ show, print
 
 
 
@@ -1145,13 +1147,35 @@ View all changes in all files.
 
 ### File - Remove From Repo
 
-Remove and Delete File:
+<cb>git rm --cached <v>file_name<><>
+
+Remove but do not delete file.
+@
+@ git rm --cached
+
+
+
+### File - Remove From Repo, Delete
 
 <cb>git rm <v>file_name<><>
 
-Remove But Do Not Delete File:
+Remove and delete file.
+@
+@ git rm
 
-<cb>git rm --cached <v>file_name<><>
+
+
+### File - Remove From Repo, Delete, Force
+
+Remove and Delete File:
+
+<cb>git rm -f <v>file_name<><>
+
+Removes and deletes the file.
+
+Forces the removal no matter what state it is in.
+@
+@ git rm -f
 
 
 
