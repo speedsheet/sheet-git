@@ -14,16 +14,16 @@ Branch - Delete<|><c>git branch -d <v>branch_name<><>
 Branch - Fetch<|><c>git fetch<>
 Branch - Push<|><c>git push <v>branch_name<><>
 
-<com>Commits - View All<><col><c>git --no-pager log --pretty=oneline<><>
-
-File - Diff To Branch<|><c>git diff <v>file_name<><>
-Files - All Diffs To Branch<|><c>git diff<>
-
 File - Add<|><c>git add <v>file_name<><>
 File - Add All<|><c>git add .<>
 File - Remove<|><c>git rm <v>file_name<><>
 File - Remove All<|><c>git add -u<>
 Files - Commit<|><c>git commit -m <v>message<><>
+
+<com>Commits - View All<><col><c>git --no-pager log --pretty=oneline<><>
+
+File - Diff To Branch<|><c>git diff <v>file_name<><>
+Files - All Diffs To Branch<|><c>git diff<>
 
 Environment Variable<|><c>HOME<><>
 
@@ -1141,7 +1141,7 @@ Changes the text of the last commit message.
 <cb>git show -s --format="%ci"<>
 @
 @ info, information, view, get
-@ git show -s
+@ git show -s, show-only
 
 
 
@@ -1493,8 +1493,12 @@ Commits the changes into a new commit.
 
 
 # Stashes
+
+Creates a temporary place to save changes without having to commit them to the repo.
+
+Last in is first out.
 @
-@ stashed
+@ stashed, git
 
 
 ### Stash - Stash Code
@@ -1505,7 +1509,7 @@ Commits the changes into a new commit.
 Stashes code into the stash.
 @
 @ git stash
-@ add, save
+@ add, save, create, new
 
 
 
@@ -1518,6 +1522,17 @@ Stashes code into the stash.
 @
 @ git stash
 @ add, save
+
+
+
+### Stash - Delete code
+
+<cb>git stash drop <v>stash_name<><>
+
+
+Deletes a stash.
+@
+@ rm, remove, drop
 
 
 
@@ -1538,6 +1553,8 @@ Restores code from the stash.
 <cb>git stash list<>
 
 Lists all stashes in the stash stack.
+@
+@ git
 
 
 
@@ -1597,7 +1614,7 @@ Deletes the tag.
 View the file changes for the given tag.
 @
 @ display, get, print, show, view
-@ git show, changes
+@ git show, changes, show-only
 
 
 
@@ -1657,7 +1674,7 @@ List all tags matching the pattern.
 
 # Worktrees
 @
-@ worktree-only, worktrees-only, git
+@ worktree-only, worktrees-only, git, tree-only
 
 
 ### Worktree - Create
@@ -1942,12 +1959,14 @@ Generate new token			<#>(Button)<><>
 
 
 
-# Commands
+# Files
 
 
 ### Directory - Untrack
 
 <cb>git rm --cached -r <!>(? what here? File name? Not directory name?)<> <v>file_name<><>
+@
+@ folder, folder-only, directory-only, dir-only
 
 
 
@@ -1957,6 +1976,8 @@ Generate new token			<#>(Button)<><>
 
 
 See Also: Branch - Clean
+@
+@ folder, folder-only, directory-only, dir-only
 
 
 
@@ -1972,6 +1993,7 @@ Note: After this, the files can be deleted and they will still be in the reposit
 @
 @ clear, delete
 @ git, clean -fd
+@ file-only, files-only
 
 
 
@@ -1983,6 +2005,58 @@ Note: After this, the files can be deleted and they will still be in the reposit
 Silences warnings about files that are ignored by .ignore
 @
 @ .ignore config advice.addignoredfile, ignored files
+@ file-only, files-only
+
+
+
+### File - Blame - View User By Line
+
+<cb>git blame <v>file_name<><>
+
+
+Shows the following for each line:
+<*>Commit hash
+Date of commit
+The user that made the commit<>
+@
+@ date time, name
+
+
+
+### File - Blame - View User By Line - Ignore Whitespace
+
+<cb>git blame -w <v>file_name<><>
+
+
+Shows the following for each line:
+<*>Commit hash
+Date of commit
+The user that made the commit<>
+@
+@ date time, name
+
+
+
+### File - Blame - View User By Line - In Line Range
+
+<cb>git blame -L <v>start<>,<v>end<> <v>file_name<><>
+
+
+Shows the blame information for the given range of lines.
+
+Line ranges are inclusive.
+
+Shows:
+<*>Commit hash
+Date of commit
+The user that made the commit<>
+
+
+Example:
+
+<cb>git blame -L <v>10<>,<v>20<> <v>main.py<><>
+@
+@ date time, name, for, within
 
 
 
@@ -1994,6 +2068,7 @@ View the changes between the current file and the last commit.
 @
 @ get, view, show, print, contents, last commit, latest commit
 @ git diff, differences, compare
+@ file-only, files-only
 
 
 
@@ -2005,6 +2080,7 @@ View all the changes between the current files and the last commit.
 @
 @ get, view, show, print, current, files, last commit, latest commit
 @ git diff, differences, compare
+@ file-only, files-only
 
 
 
@@ -2015,6 +2091,7 @@ View all the changes between the current files and the last commit.
 <cb>git checkout <v>branch_name<> <v>file_name<><>
 @
 @ reset
+@ file-only, files-only
 
 
 
@@ -2026,6 +2103,7 @@ Remove but do not delete file.
 @
 @ delete
 @ git rm --cached
+@ file-only, files-only
 
 
 
@@ -2036,6 +2114,7 @@ Remove but do not delete file.
 Remove and delete file.
 @
 @ git rm
+@ file-only, files-only
 
 
 
@@ -2050,12 +2129,15 @@ Removes and deletes the file.
 Forces the removal no matter what state it is in.
 @
 @ git rm -f
+@ file-only, files-only
 
 
 
 ### File - Rename
 
 <cb>git mv <v>file_name<> new<v>file_name<><>
+@
+@ file-only, files-only
 
 
 
@@ -2066,6 +2148,7 @@ Forces the removal no matter what state it is in.
 Note: Displays the status of files that have changed.
 @
 @ get, view, show, print
+@ file-only, files-only
 
 
 
@@ -2074,6 +2157,7 @@ Note: Displays the status of files that have changed.
 <cb>git rm --cached <v>file_name<><>
 @
 @ remove
+@ file-only, files-only
 
 
 
@@ -2779,6 +2863,11 @@ It contains the list of files the user has selected to be in the next commit.
 
 Why a staging area?
 This allows you the flexibility to decide which files to add to the commit and which ones to leave out.
+
+
+
+### Stash
+Stack based temporary storage for changes.
 
 
 
